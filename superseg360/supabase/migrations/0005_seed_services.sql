@@ -1,0 +1,40 @@
+-- SuperSeg 360 :: Módulo Comercial :: 0005 - catálogo inicial de serviços
+-- Preços iniciam em R$ 0,00 de propósito: defina os valores sugeridos reais no menu
+-- Serviços antes do piloto. Descrições e escopos são genéricos e devem ser revisados
+-- pela equipe técnica (substituir pelos textos da proposta 38072).
+
+insert into public.services (code, name, category, commercial_description, technical_scope, unit_label, inclusions, exclusions) values
+('PGR', 'PGR - Programa de Gerenciamento de Riscos', 'programa',
+ 'Identificação, avaliação e controle dos riscos ocupacionais, conforme NR-01.',
+ 'Levantamento preliminar de perigos, caracterização das exposições, inventário de riscos, plano de ação e elaboração do documento-base do PGR. [REVISAR ESCOPO]',
+ 'un', E'Visita técnica\nInventário de riscos\nPlano de ação', E'Medições quantitativas especiais\nImplantação das medidas de controle'),
+('PCMSO', 'PCMSO - Programa de Controle Médico de Saúde Ocupacional', 'programa',
+ 'Planejamento e acompanhamento da saúde dos trabalhadores, conforme NR-07.',
+ 'Elaboração do PCMSO com base no PGR, definição de exames por função/risco e relatório anual. [REVISAR ESCOPO]',
+ 'un', E'Elaboração do programa\nRelatório anual', E'Realização dos exames ocupacionais'),
+('LTCAT', 'LTCAT - Laudo Técnico das Condições do Ambiente de Trabalho', 'laudo',
+ 'Laudo para fins previdenciários sobre agentes nocivos no ambiente de trabalho.',
+ 'Avaliação qualitativa/quantitativa dos agentes nocivos por função e emissão do laudo técnico. [REVISAR ESCOPO]',
+ 'un', E'Visita técnica\nEmissão do laudo', E'Avaliações quantitativas adicionais'),
+('NR12', 'NR-12 - Segurança em Máquinas e Equipamentos', 'norma',
+ 'Apreciação de riscos e adequação de máquinas e equipamentos à NR-12.',
+ 'Inventário de máquinas, apreciação de riscos, laudo e plano de adequação. [REVISAR ESCOPO]',
+ 'máquina', E'Inventário\nApreciação de riscos\nLaudo', E'Execução das adequações físicas'),
+('NR13', 'NR-13 - Caldeiras, Vasos de Pressão e Tubulações', 'norma',
+ 'Inspeção e documentação de equipamentos sujeitos à NR-13.',
+ 'Inspeção, elaboração de prontuário/relatórios e emissão de laudos. [REVISAR ESCOPO]',
+ 'equipamento', E'Inspeção\nRelatório técnico', E'Manutenção e reparos'),
+('ERGO', 'Ergonomia - AEP/AET', 'ergonomia',
+ 'Avaliação ergonômica preliminar ou análise ergonômica do trabalho, conforme NR-17.',
+ 'Análise das condições de trabalho, avaliação e recomendações. [REVISAR ESCOPO]',
+ 'un', E'Visita técnica\nRelatório com recomendações', E'Implantação das melhorias'),
+('TREIN', 'Treinamentos de SST', 'treinamento',
+ 'Treinamentos obrigatórios e especializados de saúde e segurança do trabalho.',
+ 'Realização do treinamento conforme conteúdo programático da NR aplicável, com lista de presença e certificados. [REVISAR ESCOPO]',
+ 'participante', E'Instrutor\nMaterial didático\nCertificados', E'Deslocamento fora da região'),
+('EXAMES', 'Exames ocupacionais', 'exame',
+ 'Exames clínicos e complementares: admissional, periódico, mudança de função, retorno ao trabalho e demissional.',
+ 'Realização de exames conforme PCMSO e emissão do ASO. [REVISAR ESCOPO]',
+ 'exame', E'Consulta médica ocupacional\nEmissão do ASO', E'Exames complementares não previstos'),
+('OUTROS', 'Outros serviços', 'outros',
+ 'Serviço personalizado - descrever no escopo do orçamento.', '', 'un', '', '');
