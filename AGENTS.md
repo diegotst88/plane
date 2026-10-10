@@ -34,3 +34,12 @@ Prereq (once): `./setup.sh` — generates `apps/api/.env` from `.env.example`.
 - Teardown: `docker compose -f docker-compose-test.yml down -v`
 
 See `apps/api/tests/RUNNING_TESTS.md` for the full walkthrough and troubleshooting; see `apps/api/tests/TESTING_GUIDE.md` for test conventions and fixtures.
+
+## Cursor Cloud specific instructions
+
+- `package.json` requires Node `>=22.18`. Login shells can resolve `/exec-daemon/node` (v22.14) first. Cloud install and start prepend `/home/ubuntu/.nvm/versions/node/v22.23.3/bin`.
+- Canonical local setup is `./setup.sh`, then `docker compose -f docker-compose-local.yml up`, then `pnpm dev`. Web is port 3000, admin/god-mode is port 3001, space is 3002, live is 3100, and the API is 8000.
+- Open the apps at `http://localhost:3000` and `http://localhost:3001/god-mode/`. The API CORS list matches those `localhost` origins.
+- The first god-mode visit registers the instance admin. Sign in to the web app with that same account, then create a workspace.
+- This VM has no systemd. Start `containerd` and `dockerd` directly, with `fuse-overlayfs` as the storage driver. After the daemon is up, set `net.bridge.bridge-nf-call-iptables=0` and `net.bridge.bridge-nf-call-ip6tables=0` so containers on the same bridge can reach Postgres.
+- `minio/minio` is no longer published on Docker Hub. Pull `pgsty/minio:RELEASE.2026-08-04T00-00-00Z` and tag it `minio/minio:latest` before Compose starts `plane-minio`.
