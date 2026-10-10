@@ -1,5 +1,6 @@
 import { requireWriter } from "@/lib/auth";
-import { ClientForm, emptyClient } from "@/components/client-form";
+import { ClientForm } from "@/components/client-form";
+import { emptyClient } from "@/lib/client-form";
 import { BackLink, PageHeader } from "@/components/ui";
 
 export default async function NewClientPage() {

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { requireProfile, isAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { ServiceForm, toFormValues } from "@/components/service-form";
+import { ServiceForm } from "@/components/service-form";
+import { toFormValues } from "@/lib/service-form";
 import { AuditHistory } from "@/components/audit-history";
 import { BackLink, PageHeader } from "@/components/ui";
 import type { AuditEntry, Service } from "@/lib/types";

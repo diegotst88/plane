@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth";
-import { ServiceForm, emptyService } from "@/components/service-form";
+import { ServiceForm } from "@/components/service-form";
+import { emptyService } from "@/lib/service-form";
 import { BackLink, PageHeader } from "@/components/ui";
 
 export default async function NewServicePage() {
