@@ -52,7 +52,7 @@ export async function lookupCnpj(
   try {
     const res = await fetchImpl(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`, {
       signal: AbortSignal.timeout(8000),
-      headers: { Accept: "application/json" },
+      headers: { Accept: "application/json", "User-Agent": "SuperSeg360/1.0" },
       cache: "no-store",
     });
     if (res.status === 404) return { ok: false, error: "CNPJ não encontrado na base pública." };

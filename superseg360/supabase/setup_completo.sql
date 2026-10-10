@@ -274,6 +274,9 @@ begin
       if not public.app_is_admin() then
         raise exception 'Somente administradores podem aprovar modelos.';
       end if;
+      if new.body ~* '\[(texto|minuta) provis' or new.title ~* '\(minuta provis|\[(texto|minuta) provis' then
+        raise exception 'O texto ainda contém marcações provisórias ([TEXTO PROVISÓRIO] / MINUTA PROVISÓRIA). Substitua pelo texto oficial antes de aprovar.';
+      end if;
       new.approved_by := auth.uid();
       new.approved_at := now();
       update public.document_templates set status = 'archived'

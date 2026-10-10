@@ -127,6 +127,8 @@ describe("catalogo e modelos", () => {
     const id = t.rows[0]!.id;
     const denied = await asUser(db, comercial, () => q("update public.document_templates set status='approved' where id=$1", [id]));
     expect(denied.affectedRows).toBe(0);
+    expect(await expectError(asUser(db, admin, () => q("update public.document_templates set status='approved' where id=$1", [id])))).toContain("marcações provisórias");
+    await asUser(db, admin, () => q("update public.document_templates set body='Aceite por assinatura ou e-mail citando {{numero_proposta}}.' where id=$1", [id]));
     await asUser(db, admin, () => q("update public.document_templates set status='approved' where id=$1", [id]));
     const a = await q<{ approved_by: string; approved_at: string }>("select approved_by, approved_at from public.document_templates where id=$1", [id]);
     expect(a.rows[0]!.approved_by).toBe(admin);

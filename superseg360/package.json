@@ -11,7 +11,9 @@
     "test": "vitest run",
     "sample-pdf": "vitest run tests/pdf.test.ts",
     "db:bundle": "node scripts/bundle-sql.mjs",
-    "check": "npm run typecheck && npm run lint && npm run test"
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "e2e": "node e2e/pilot.mjs",
+    "stack:reset": "bash scripts/local-stack/reset.sh"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
@@ -34,6 +36,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.27",
     "pg": "^8.23.1",
+    "playwright": "^1.64.0",
     "postcss": "^8.5.29",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",

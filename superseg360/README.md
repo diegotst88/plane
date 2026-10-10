@@ -63,6 +63,20 @@ Eventos de orçamento (`quote.created/enviada/aprovada/recusada`) são gravados 
 `integration_connections` (estado por provedor) e `external_refs` (IDs externos) já existem. Os contratos estão em
 `src/lib/integrations/index.ts`. Provedores previstos: Conta Azul, ClickUp, SOC, WhatsApp, E-mail, ZapSign e Agentes de IA.
 
+## Teste de ponta a ponta (sem Docker)
+
+`scripts/local-stack` sobe PostgreSQL real + PostgREST + um servidor de autenticação simulado compatível com o Supabase,
+aplicando as mesmas migrações. O script `e2e/pilot.mjs` (Playwright) percorre o piloto completo no navegador
+(login, serviços, cliente com consulta de CNPJ, orçamento com descontos, PDF em minuta, bloqueio de envio, aprovação dos
+modelos, envio, recusa, nova versão, painel, permissões, criação de usuário):
+
+```bash
+sudo apt-get install -y postgresql          # uma vez; PostgREST: https://github.com/PostgREST/postgrest/releases
+npm run stack:reset                         # recria banco e usuários de teste (POSTGREST_BIN=caminho do binário)
+# .env.local: NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321 e chaves fictícias
+npm run dev &  npm run e2e                  # evidências em sample-output/e2e/
+```
+
 ## Testes
 
 - `tests/lib.test.ts`, `tests/schemas.test.ts`, `tests/cnpj-lookup.test.ts`: regras puras.
