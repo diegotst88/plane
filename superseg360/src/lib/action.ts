@@ -5,11 +5,9 @@ export interface ActionResult<T = undefined> {
   data?: T;
 }
 
-export const fail = (error: string, fieldErrors?: Record<string, string>): ActionResult => ({
-  ok: false,
-  error,
-  fieldErrors,
-});
+export function fail<T = never>(error: string, fieldErrors?: Record<string, string>): ActionResult<T> {
+  return { ok: false, error, fieldErrors };
+}
 
 /** Traduz erros comuns do PostgreSQL/Supabase para mensagens claras ao usuário. */
 export function dbErrorMessage(err: { message: string; code?: string } | null | undefined): string {

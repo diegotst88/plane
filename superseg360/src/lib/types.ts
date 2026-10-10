@@ -95,7 +95,7 @@ export interface Quote {
   sent_at: string | null;
   decided_at: string | null;
   decision_note: string | null;
-  template_snapshot: Record<string, number> | null;
+  template_snapshot: Record<string, string> | null;
   created_at: string;
   updated_at: string;
 }

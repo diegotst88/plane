@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
+import { fileURLToPath } from "node:url";
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: fileURLToPath(new URL(".", import.meta.url)),
   serverExternalPackages: ["@react-pdf/renderer"],
   poweredByHeader: false,
   async headers() {
